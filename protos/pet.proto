@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package proto;
+
+service Pet {
+  rpc GetList (google.protobuf.Empty) returns (PetListResponse);
+  rpc Add(AddPetRequest) returns (AddPetResponse);
+  rpc Delete(DeletePetRequest) returns (DeletePetResponse);
+  rpc Update(UpdatePetRequest) returns (UpdatePetResponse);
+}
+
+message PetListResponse {
+  repeated PetItem items = 1;
+}
+
+message PetItem {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message AddPetRequest {
+  string name = 1;
+  int32 age = 2;
+}
+
+message AddPetResponse {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message UpdatePetRequest {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message UpdatePetResponse {
+  int32 id = 1;
+}
+
+message DeletePetRequest {
+  int32 id = 1;
+}
+
+message DeletePetResponse {
+  int32 id = 1;
+}
